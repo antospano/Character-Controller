@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fe31b39664b547578a3ba5854bfac24, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: Assembly-CSharp::PlayerConfig
-  walkSpeed: 15
-  jumpSpeed: 60
-  airControl: 0.2
-  gravity: 9.81
+  walkSpeed: 10
+  airSpeed: 5
+  jumpSpeed: 20
+  gravity: 4

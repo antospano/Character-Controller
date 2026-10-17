@@ -9,7 +9,8 @@ public class PlayerController : MonoBehaviour
     //public PlayerState currentState { get; private set; }
     private Vector3 movement;
     private float jumpForce;
-    private float currentSpeed = 0;
+    private Vector2 speed = Vector2.zero;
+    private float currentSpeedZ = 0;
     private float verticalSpeed = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,12 +24,18 @@ public class PlayerController : MonoBehaviour
         switch (stateManager.playerState)
         {
             case PlayerState.isOnGround:
-            currentSpeed = playerConfig.walkSpeed;
+            speed = new Vector2(playerConfig.walkSpeed, playerConfig.walkSpeed);
             verticalSpeed = 0;
             break;
             case PlayerState.isOnAir:
-            currentSpeed = playerConfig.walkSpeed * playerConfig.airControl;
-            verticalSpeed -= (verticalSpeed > -playerConfig.gravity) ? playerConfig.gravity * 0.2f : 0;
+            //currentSpeed = playerConfig.walkSpeed * playerConfig.airControl;
+
+            speed = new Vector2(
+                stateManager.inputOnJump.x != 0 ? playerConfig.walkSpeed : playerConfig.airSpeed,
+                stateManager.inputOnJump.y != 0 ? playerConfig.walkSpeed : playerConfig.airSpeed
+            );
+
+            verticalSpeed -= (verticalSpeed > -playerConfig.gravity) ? playerConfig.gravity * 0.1f : 0;
             //verticalSpeed = -playerConfig.gravity;
             break;
             case PlayerState.isJumping:
@@ -41,9 +48,9 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         
-        movement = new Vector3(playerInput.moveInput.x * currentSpeed,
+        movement = new Vector3(playerInput.moveInput.x * speed.x,
         -playerConfig.gravity + verticalSpeed,
-        playerInput.moveInput.y * currentSpeed) * Time.fixedDeltaTime;
+        playerInput.moveInput.y * speed.y) * Time.fixedDeltaTime;
 
         cc.Move(movement);
     }
