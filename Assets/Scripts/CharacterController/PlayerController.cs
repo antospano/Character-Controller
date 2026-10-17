@@ -5,7 +5,8 @@ public class PlayerController : MonoBehaviour
     [field: SerializeField] public CharacterController cc { get; private set; }
     [field: SerializeField] public PlayerConfig playerConfig { get; private set; }
     [SerializeField] private PlayerInput playerInput;
-    public PlayerState currentState { get; private set; }
+    [SerializeField] private PlayerStateManager stateManager;
+    //public PlayerState currentState { get; private set; }
     private Vector3 movement;
     private float jumpForce;
     private float currentSpeed = 0;
@@ -19,14 +20,19 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        switch (currentState)
+        switch (stateManager.playerState)
         {
             case PlayerState.isOnGround:
             currentSpeed = playerConfig.walkSpeed;
-            //verticalSpeed = -playerConfig.gravity;
+            verticalSpeed = 0;
             break;
             case PlayerState.isOnAir:
             currentSpeed = playerConfig.walkSpeed * playerConfig.airControl;
+            verticalSpeed -= (verticalSpeed > -playerConfig.gravity) ? playerConfig.gravity * 0.2f : 0;
+            //verticalSpeed = -playerConfig.gravity;
+            break;
+            case PlayerState.isJumping:
+            verticalSpeed = playerConfig.jumpSpeed;
             break;
         }
     }
@@ -36,7 +42,7 @@ public class PlayerController : MonoBehaviour
     {
         
         movement = new Vector3(playerInput.moveInput.x * currentSpeed,
-        -playerConfig.gravity,
+        -playerConfig.gravity + verticalSpeed,
         playerInput.moveInput.y * currentSpeed) * Time.fixedDeltaTime;
 
         cc.Move(movement);
