@@ -15,6 +15,7 @@ public class PlayerInput : MonoBehaviour
     public InputAction lookAction { get; private set; }
 
     public Vector2 moveInput { get; private set; }
+    public Vector2 lookInput { get; private set; }
     public bool isJumping { get; private set; } = false;
 
     void OnEnable()
@@ -27,6 +28,7 @@ public class PlayerInput : MonoBehaviour
     void Update()
     {
         moveInput = moveAction.ReadValue<Vector2>();
+        lookInput = lookAction.ReadValue<Vector2>();
         isJumping = jumpAction.IsPressed();
     }
 }
