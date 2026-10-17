@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 /// <summary>
 /// This class works best with the default InputSystem configured actions "move", "jump" and "look".
 /// </summary>
-public class PlayerInput : MonoBehaviour
+public class PlayerInputManager : MonoBehaviour
 {
     [SerializeField] private string _moveAction = "Move";
     [SerializeField] private string _jumpAction = "Jump";

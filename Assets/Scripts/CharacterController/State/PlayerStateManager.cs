@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerStateManager : MonoBehaviour
 {
-    [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private PlayerInputManager playerInput;
     [SerializeField] private PlayerGroundCheck groundCheck;
     public Vector2 inputOnJump { get; private set; } = Vector2.zero;
     public PlayerState playerState { get; private set; }

@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     [field: SerializeField] public CharacterController cc { get; private set; }
     [field: SerializeField] public PlayerConfig playerConfig { get; private set; }
-    [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private PlayerInputManager playerInput;
     [SerializeField] private PlayerStateManager stateManager;
     //public PlayerState currentState { get; private set; }
     private Vector3 movement;
