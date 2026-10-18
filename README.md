@@ -65,4 +65,4 @@ The project is split into distinct, highly modular components, each handling a s
    * Assign the Player GameObject as the target for position tracking and configure your mouse sensitivity.
 
 **P.S.**
-* Absolutely NO content of this project is AI generated. *
+Absolutely NO content of this project is AI generated.
