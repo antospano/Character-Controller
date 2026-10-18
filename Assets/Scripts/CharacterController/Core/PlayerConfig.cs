@@ -1,5 +1,12 @@
 using UnityEngine;
 
+[System.Serializable]
+public struct LerpSpeed
+{
+    public float min;
+    public float max;
+}
+
 [CreateAssetMenu(fileName = "PlayerConfig", menuName = "Scriptable Objects/PlayerConfig")]
 public class PlayerConfig : ScriptableObject
 {
@@ -7,5 +14,5 @@ public class PlayerConfig : ScriptableObject
     [Range(1, 100)] public float airSpeed;
     [Range(1, 100)] public float jumpSpeed;
     [Range(0, 100)] public float gravity;
-    //[Range(0, 1)] public float floorDrag;
+    public LerpSpeed lerpSpeed;
 }

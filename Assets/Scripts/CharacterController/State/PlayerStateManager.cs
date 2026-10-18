@@ -4,7 +4,6 @@ public class PlayerStateManager : MonoBehaviour
 {
     [SerializeField] private PlayerInputManager playerInput;
     [SerializeField] private PlayerGroundCheck groundCheck;
-    public Vector2 inputOnJump { get; private set; } = Vector2.zero;
     public PlayerState playerState { get; private set; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,7 +16,6 @@ public class PlayerStateManager : MonoBehaviour
     {
         if (playerState == PlayerState.isJumping && !groundCheck.isGrounded)
         {
-            if (playerInput.moveInput != inputOnJump) inputOnJump = Vector2.zero;
             playerState = PlayerState.isOnAir;
         }
 
@@ -28,7 +26,6 @@ public class PlayerStateManager : MonoBehaviour
 
         if (playerInput.isJumping && groundCheck.isGrounded)
         {
-            inputOnJump = playerInput.moveInput;
             playerState = PlayerState.isJumping;
         }
     }

@@ -7,10 +7,11 @@ public class PlayerController : MonoBehaviour
     [field: SerializeField] public PlayerConfig playerConfig { get; private set; }
     [SerializeField] private PlayerInputManager playerInput;
     [SerializeField] private PlayerStateManager stateManager;
-    //public PlayerState currentState { get; private set; }
     private Vector3 movement;
     private Vector2 speed = Vector2.zero;
     private float verticalSpeed = 0;
+    private float xMovement = 0;
+    private float yMovement = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,13 +28,15 @@ public class PlayerController : MonoBehaviour
             case PlayerState.isOnGround:
             speed = new Vector2(playerConfig.walkSpeed, playerConfig.walkSpeed);
             verticalSpeed = 0;
+            playerInput.SetLerpSpeed(playerConfig.lerpSpeed.max);
             break;
             case PlayerState.isOnAir:
+            playerInput.SetLerpSpeed(playerConfig.lerpSpeed.min);
             speed = new Vector2(
-                stateManager.inputOnJump.x != 0 ? playerConfig.walkSpeed : playerConfig.airSpeed,
-                stateManager.inputOnJump.y != 0 ? playerConfig.walkSpeed : playerConfig.airSpeed
+                playerInput.moveInput.x != 0 ? playerConfig.walkSpeed : playerConfig.airSpeed,
+                playerInput.moveInput.y != 0 ? playerConfig.walkSpeed : playerConfig.airSpeed
             );
-            verticalSpeed -= (verticalSpeed > -playerConfig.gravity) ? playerConfig.gravity * 0.1f : 0;
+            verticalSpeed -= (verticalSpeed > -playerConfig.gravity) ? playerConfig.gravity * Time.deltaTime : 0;
             break;
             case PlayerState.isJumping:
             verticalSpeed = playerConfig.jumpSpeed;
@@ -44,9 +47,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        movement = transform.TransformDirection(new Vector3(playerInput.moveInput.x * speed.x,
+        xMovement = playerInput.moveInput.x * speed.x;
+        yMovement = playerInput.moveInput.y * speed.y;
+
+        movement = transform.TransformDirection(new Vector3(xMovement,
         -playerConfig.gravity + verticalSpeed,
-        playerInput.moveInput.y * speed.y));
+        yMovement));
 
         cc.Move(movement * Time.fixedDeltaTime);
     }
