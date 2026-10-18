@@ -64,5 +64,7 @@ The project is split into distinct, highly modular components, each handling a s
    * Attach `CameraManager` to your Main Camera.
    * Assign the Player GameObject as the target for position tracking and configure your mouse sensitivity.
 
-**P.S.**
-Absolutely NO content of this project is AI generated.
+---
+
+**P.S.** <br>
+Absolutely NO line of code in this project is AI generated.
