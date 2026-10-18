@@ -10,7 +10,7 @@ A clean, robust, and professional modular 3D Character Controller built from scr
 * 🎛️ **Fully Configurable Speeds & Physics**: Fine-tune movement mechanics directly in Unity with granular control over:
   * **Walk Speed** (Ground movement)
   * **Air Speed** (Air control & momentum)
-  * **Jump Speed / Force**
+  * **Jump Speed**
   * **Custom Gravity**
 * 🎯 **Precise SphereCast Ground Detection**: Reliable ground checking using a `SphereCast` targeted strictly at the `Ground` layer to handle slopes and edges cleanly.
 * 📷 **Integrated Camera System**: Smooth follow mechanics and clamped mouse-look rotation managed by a dedicated camera script.
@@ -63,3 +63,8 @@ The project is split into distinct, highly modular components, each handling a s
 4. **Set Up the Camera**:
    * Attach `CameraManager` to your Main Camera.
    * Assign the Player GameObject as the target for position tracking and configure your mouse sensitivity.
+
+---
+
+**P.S.** <br>
+Absolutely NO line of code in this project is AI generated.
