@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerConfig
   walkSpeed: 10
   airSpeed: 1
-  jumpSpeed: 15
-  gravity: 9.81
+  jumpSpeed: 6
+  gravity: 15
   lerpSpeed:
-    min: 3
-    max: 10
+    min: 1
+    max: 15

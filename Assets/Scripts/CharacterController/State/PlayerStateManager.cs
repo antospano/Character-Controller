@@ -14,7 +14,7 @@ public class PlayerStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerState == PlayerState.isJumping && !groundCheck.isGrounded)
+        if (!groundCheck.isGrounded)
         {
             playerState = PlayerState.isOnAir;
         }

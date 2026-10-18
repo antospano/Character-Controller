@@ -1,4 +1,3 @@
-using UnityEditorInternal;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -51,7 +50,7 @@ public class PlayerController : MonoBehaviour
         yMovement = playerInput.moveInput.y * speed.y;
 
         movement = transform.TransformDirection(new Vector3(xMovement,
-        -playerConfig.gravity + verticalSpeed,
+        verticalSpeed,
         yMovement));
 
         cc.Move(movement * Time.fixedDeltaTime);
