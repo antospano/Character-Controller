@@ -7,16 +7,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerInputManager playerInput;
     [SerializeField] private PlayerStateManager stateManager;
     private Vector3 movement;
-    private Vector2 speed = Vector2.zero;
+    private float speed;
     private float verticalSpeed = 0;
     private float xMovement = 0;
     private float yMovement = 0;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
@@ -25,18 +19,17 @@ public class PlayerController : MonoBehaviour
         switch (stateManager.playerState)
         {
             case PlayerState.isOnGround:
-            speed = new Vector2(playerConfig.walkSpeed, playerConfig.walkSpeed);
+            speed = playerConfig.walkSpeed;
             verticalSpeed = 0;
             playerInput.SetLerpSpeed(playerConfig.lerpSpeed.max);
             break;
+
             case PlayerState.isOnAir:
             playerInput.SetLerpSpeed(playerConfig.lerpSpeed.min);
-            speed = new Vector2(
-                playerInput.moveInput.x != 0 ? playerConfig.walkSpeed : playerConfig.airSpeed,
-                playerInput.moveInput.y != 0 ? playerConfig.walkSpeed : playerConfig.airSpeed
-            );
+            speed = playerConfig.airSpeed;
             verticalSpeed -= (verticalSpeed > -playerConfig.gravity) ? playerConfig.gravity * Time.deltaTime : 0;
             break;
+            
             case PlayerState.isJumping:
             verticalSpeed = playerConfig.jumpSpeed;
             break;
@@ -46,8 +39,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        xMovement = playerInput.moveInput.x * speed.x;
-        yMovement = playerInput.moveInput.y * speed.y;
+        xMovement = playerInput.moveInput.x * speed;
+        yMovement = playerInput.moveInput.y * speed;
 
         movement = transform.TransformDirection(new Vector3(xMovement,
         verticalSpeed,

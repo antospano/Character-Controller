@@ -271,7 +271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraManager
   player: {fileID: 1001315064}
   playerInput: {fileID: 1001315067}
-  sensitivity: 20
+  sensitivity: 3
   verticalOffset: 0.8
 --- !u!1 &410087039
 GameObject:

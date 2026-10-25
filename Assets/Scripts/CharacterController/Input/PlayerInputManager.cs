@@ -31,7 +31,7 @@ public class PlayerInputManager : MonoBehaviour
     void Update()
     {
         _moveInput = moveAction.ReadValue<Vector2>();
-
+        
         moveInput = Vector2.Lerp(moveInput, _moveInput, lerpSpeed * Time.deltaTime);
 
         lookInput = lookAction.ReadValue<Vector2>();

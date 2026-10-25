@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fe31b39664b547578a3ba5854bfac24, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: Assembly-CSharp::PlayerConfig
-  walkSpeed: 10
-  airSpeed: 1
+  walkSpeed: 12
+  airSpeed: 8
   jumpSpeed: 6
   gravity: 15
   lerpSpeed:

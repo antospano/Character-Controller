@@ -10,7 +10,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private float verticalOffset = 1.0f;
     private float xRotation = 0f;
     private float yRotation = 0f;
-    //private float yRotation;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
