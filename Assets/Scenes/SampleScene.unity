@@ -841,6 +841,7 @@ MonoBehaviour:
   <playerConfig>k__BackingField: {fileID: 11400000, guid: 761b21d6add320dae8ad2f3253a7fe22, type: 2}
   playerInput: {fileID: 1001315067}
   stateManager: {fileID: 1001315068}
+  lookInputAirMovementDivider: 50
 --- !u!143 &1001315066
 CharacterController:
   m_ObjectHideFlags: 0

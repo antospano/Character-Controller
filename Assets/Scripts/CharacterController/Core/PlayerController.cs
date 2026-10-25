@@ -6,11 +6,13 @@ public class PlayerController : MonoBehaviour
     [field: SerializeField] public PlayerConfig playerConfig { get; private set; }
     [SerializeField] private PlayerInputManager playerInput;
     [SerializeField] private PlayerStateManager stateManager;
+    [SerializeField, Range(1f, 100f)] private float lookInputAirMovementDivider = 50f;
     private Vector3 movement;
     private float speed;
     private float verticalSpeed = 0;
     private float xMovement = 0;
     private float yMovement = 0;
+    
 
     void Update()
     {
@@ -25,7 +27,7 @@ public class PlayerController : MonoBehaviour
             break;
 
             case PlayerState.isOnAir:
-            playerInput.SetLerpSpeed(playerConfig.lerpSpeed.min);
+            playerInput.SetLerpSpeed(playerConfig.lerpSpeed.min + Mathf.Abs(playerInput.lookInput.x / lookInputAirMovementDivider));
             speed = playerConfig.airSpeed;
             verticalSpeed -= (verticalSpeed > -playerConfig.gravity) ? playerConfig.gravity * Time.deltaTime : 0;
             break;
@@ -34,6 +36,8 @@ public class PlayerController : MonoBehaviour
             verticalSpeed = playerConfig.jumpSpeed;
             break;
         }
+
+        Debug.Log("MIN LERP: " + playerConfig.lerpSpeed.min + ", LOOK INPUT X: " + playerInput.lookInput.x);
     }
 
     // Update is called once per frame

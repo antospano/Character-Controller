@@ -10,6 +10,9 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private float verticalOffset = 1.0f;
     private float xRotation = 0f;
     private float yRotation = 0f;
+    private float minVerticalRotationClampValue = -90f;
+    private float maxVerticalRotationClampValue = 90f;
+    private float sensitivityDivider = 100;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,10 +26,10 @@ public class CameraManager : MonoBehaviour
     {
         transform.position = new Vector3(player.position.x, player.position.y + verticalOffset, player.position.z);
 
-        xRotation -= playerInput.lookInput.y * sensitivity * .01f;
-        yRotation += playerInput.lookInput.x * sensitivity * .01f;
+        xRotation -= playerInput.lookInput.y * (sensitivity / sensitivityDivider);
+        yRotation += playerInput.lookInput.x * (sensitivity / sensitivityDivider);
 
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        xRotation = Mathf.Clamp(xRotation, minVerticalRotationClampValue, maxVerticalRotationClampValue);
 
         transform.rotation = Quaternion.Euler(new Vector3(xRotation, yRotation, 0));
     }
