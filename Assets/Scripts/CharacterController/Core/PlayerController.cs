@@ -36,8 +36,6 @@ public class PlayerController : MonoBehaviour
             verticalSpeed = playerConfig.jumpSpeed;
             break;
         }
-
-        Debug.Log("MIN LERP: " + playerConfig.lerpSpeed.min + ", LOOK INPUT X: " + playerInput.lookInput.x);
     }
 
     // Update is called once per frame
